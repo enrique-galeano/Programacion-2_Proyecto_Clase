@@ -1,3 +1,8 @@
+
+import java.util.ArrayList;
+import java.util.Date;
+import javax.swing.JOptionPane;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -24,21 +29,217 @@ public class Login extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jDUsuarios = new javax.swing.JDialog();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jf_nombreCompleto = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        jf_nickname = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        jf_contra = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        jd_fechaDeNacimiento = new com.toedter.calendar.JDateChooser();
+        jB_crear = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        jc_paisoRegion = new javax.swing.JComboBox();
+        jDAdministardor = new javax.swing.JDialog();
+        jCalendar1 = new com.toedter.calendar.JCalendar();
+        jDayChooser1 = new com.toedter.calendar.JDayChooser();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+
+        jLabel7.setText("Nombre");
+
+        jLabel8.setText("Crea tu usuario");
+
+        jLabel9.setText("Nick Name");
+
+        jLabel10.setText("Contraseña");
+
+        jLabel11.setText("Fecha de Nacimiento");
+
+        jB_crear.setText("Crear Usuario");
+        jB_crear.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jB_crearMouseClicked(evt);
+            }
+        });
+
+        jLabel6.setText("Pais o Region");
+
+        jc_paisoRegion.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Honduras", "Estados Unidos", "Canada", "Alemania", "Rusia", "Venezuela", "Mexico", " " }));
+
+        javax.swing.GroupLayout jDUsuariosLayout = new javax.swing.GroupLayout(jDUsuarios.getContentPane());
+        jDUsuarios.getContentPane().setLayout(jDUsuariosLayout);
+        jDUsuariosLayout.setHorizontalGroup(
+            jDUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDUsuariosLayout.createSequentialGroup()
+                .addGap(94, 94, 94)
+                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jDUsuariosLayout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addGroup(jDUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jDUsuariosLayout.createSequentialGroup()
+                        .addGroup(jDUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel9))
+                        .addGap(83, 83, 83)
+                        .addGroup(jDUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jf_nickname, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jf_nombreCompleto)))
+                    .addGroup(jDUsuariosLayout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addComponent(jLabel11)
+                        .addGap(18, 18, 18)
+                        .addGroup(jDUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jB_crear, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jd_fechaDeNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jDUsuariosLayout.createSequentialGroup()
+                        .addGroup(jDUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel10)
+                            .addComponent(jLabel6))
+                        .addGap(68, 68, 68)
+                        .addGroup(jDUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jf_contra)
+                            .addComponent(jc_paisoRegion, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addGap(197, 197, 197))
+        );
+        jDUsuariosLayout.setVerticalGroup(
+            jDUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDUsuariosLayout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jDUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(jf_nombreCompleto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jDUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(jf_nickname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(24, 24, 24)
+                .addGroup(jDUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(jf_contra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jDUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel6)
+                    .addComponent(jc_paisoRegion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(24, 24, 24)
+                .addGroup(jDUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jd_fechaDeNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel11))
+                .addGap(29, 29, 29)
+                .addComponent(jB_crear)
+                .addContainerGap(80, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout jDAdministardorLayout = new javax.swing.GroupLayout(jDAdministardor.getContentPane());
+        jDAdministardor.getContentPane().setLayout(jDAdministardorLayout);
+        jDAdministardorLayout.setHorizontalGroup(
+            jDAdministardorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        jDAdministardorLayout.setVerticalGroup(
+            jDAdministardorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabel2.setFont(new java.awt.Font("Silom", 0, 18)); // NOI18N
+        jLabel2.setText("Bienvenido a la Red Social KYBER");
+
+        jLabel1.setText("En esta Red Social podras conectarte con tus amigos ");
+
+        jLabel3.setText("Tienes cuenta ?");
+
+        jLabel4.setText("Crea tu cuenta :)");
+        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel4MouseClicked(evt);
+            }
+        });
+
+        jLabel5.setText("Cuenta Administrador");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(73, 73, 73)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(119, 119, 119)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel5)))
+                .addContainerGap(89, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(37, 37, 37)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(38, 38, 38)
+                .addComponent(jLabel1)
+                .addGap(80, 80, 80)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(16, 16, 16))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
+        // TODO add your handling code here:
+		jDUsuarios.setModal(true);
+		jDUsuarios.pack();
+		jDUsuarios.setLocationRelativeTo(this);
+		jDUsuarios.setVisible(true);
+    }//GEN-LAST:event_jLabel4MouseClicked
+
+    private void jB_crearMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jB_crearMouseClicked
+        String nombreCompleto;
+		String nickname;
+		String contra;
+		String pais;
+		Date fechaNaci;
+		
+		nombreCompleto = jf_nombreCompleto.getText();
+		nickname = jf_nickname.getText();
+		contra= jf_contra.getText();
+		pais =  (String)(jc_paisoRegion.getSelectedItem());
+		fechaNaci = jd_fechaDeNacimiento.getDate();
+		
+		Usuario us = new Usuario(nombreCompleto, nickname, contra, pais, fechaNaci);
+		user.add(us);
+		
+		jf_nombreCompleto.setText(" ");
+		jf_nickname.setText(" ");
+		jf_contra.setText(" ");
+		jc_paisoRegion.setSelectedIndex(0);
+		jd_fechaDeNacimiento.setDate(null);
+		
+		JOptionPane.showMessageDialog(jDUsuarios, "Se creo el usuario exitosamente");
+    }//GEN-LAST:event_jB_crearMouseClicked
 
 	/**
 	 * @param args the command line arguments
@@ -76,5 +277,27 @@ public class Login extends javax.swing.JFrame {
 	}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jB_crear;
+    private com.toedter.calendar.JCalendar jCalendar1;
+    private javax.swing.JDialog jDAdministardor;
+    private javax.swing.JDialog jDUsuarios;
+    private com.toedter.calendar.JDayChooser jDayChooser1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JComboBox jc_paisoRegion;
+    private com.toedter.calendar.JDateChooser jd_fechaDeNacimiento;
+    private javax.swing.JTextField jf_contra;
+    private javax.swing.JTextField jf_nickname;
+    private javax.swing.JTextField jf_nombreCompleto;
     // End of variables declaration//GEN-END:variables
+ArrayList<Usuario>  user = new ArrayList();
 }
