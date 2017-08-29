@@ -259,6 +259,7 @@ public class Login extends javax.swing.JFrame {
 			bw.write(System.getProperty("line.separator"));
 			bw.newLine();
 			bw.flush();
+			//cierre del archivo
 			bw.close();
 			fw.close();
 
