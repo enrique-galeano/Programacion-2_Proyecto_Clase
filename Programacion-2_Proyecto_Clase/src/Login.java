@@ -1,6 +1,12 @@
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /*
@@ -8,7 +14,6 @@ import javax.swing.JOptionPane;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author enriquejosegaleanotalavera
@@ -209,7 +214,7 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
-        // TODO add your handling code here:
+		// TODO add your handling code here:
 		jDUsuarios.setModal(true);
 		jDUsuarios.pack();
 		jDUsuarios.setLocationRelativeTo(this);
@@ -217,28 +222,53 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel4MouseClicked
 
     private void jB_crearMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jB_crearMouseClicked
-        String nombreCompleto;
-		String nickname;
-		String contra;
-		String pais;
+
+		String nombreCompleto = " ";
+		String nickname = " ";
+		String contra = " ";
+		String pais = " ";
 		Date fechaNaci;
-		
+
+		File f = null;
+		FileWriter fw = null;
+		BufferedWriter bw = null;
+
 		nombreCompleto = jf_nombreCompleto.getText();
 		nickname = jf_nickname.getText();
-		contra= jf_contra.getText();
-		pais =  (String)(jc_paisoRegion.getSelectedItem());
+		contra = jf_contra.getText();
+		pais = (String) (jc_paisoRegion.getSelectedItem());
 		fechaNaci = jd_fechaDeNacimiento.getDate();
-		
-		Usuario us = new Usuario(nombreCompleto, nickname, contra, pais, fechaNaci);
-		user.add(us);
-		
+
 		jf_nombreCompleto.setText(" ");
 		jf_nickname.setText(" ");
 		jf_contra.setText(" ");
 		jc_paisoRegion.setSelectedIndex(0);
 		jd_fechaDeNacimiento.setDate(null);
-		
+
+		try {
+			f = new File("./UsuariosCreados.txt");
+			fw = new FileWriter(f, true);
+			bw = new BufferedWriter(fw);
+			bw.write(nombreCompleto);
+			bw.write(System.getProperty("line.separator"));
+			bw.write(nickname);
+			bw.write(System.getProperty("line.separator"));
+			bw.write(contra);
+			bw.write(System.getProperty("line.separator"));
+			bw.write(pais);
+			bw.write(System.getProperty("line.separator"));
+			bw.newLine();
+			bw.flush();
+			bw.close();
+			fw.close();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		Usuario us = new Usuario(nombreCompleto, nickname, contra, pais, fechaNaci);
+		user.add(us);
 		JOptionPane.showMessageDialog(jDUsuarios, "Se creo el usuario exitosamente");
+
     }//GEN-LAST:event_jB_crearMouseClicked
 
 	/**
@@ -246,7 +276,7 @@ public class Login extends javax.swing.JFrame {
 	 */
 	public static void main(String args[]) {
 		/* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+		//<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
 		 * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
 		 */
@@ -266,7 +296,7 @@ public class Login extends javax.swing.JFrame {
 		} catch (javax.swing.UnsupportedLookAndFeelException ex) {
 			java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 		}
-        //</editor-fold>
+		//</editor-fold>
 
 		/* Create and display the form */
 		java.awt.EventQueue.invokeLater(new Runnable() {
@@ -299,5 +329,5 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JTextField jf_nickname;
     private javax.swing.JTextField jf_nombreCompleto;
     // End of variables declaration//GEN-END:variables
-ArrayList<Usuario>  user = new ArrayList();
+ArrayList<Usuario> user = new ArrayList();
 }
