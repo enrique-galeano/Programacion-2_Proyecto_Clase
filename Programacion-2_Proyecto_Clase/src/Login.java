@@ -59,8 +59,8 @@ public class Login extends javax.swing.JFrame {
         JDIngresarUsuario = new javax.swing.JDialog();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
+        jt_usuario = new javax.swing.JTextField();
+        jt_contra = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
         jLabel17 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -211,6 +211,11 @@ public class Login extends javax.swing.JFrame {
         jLabel16.setText("Contraseñas ");
 
         jButton2.setText("Ingresar");
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+        });
 
         jLabel17.setText("Ingresar a tu Red Social KYBER");
 
@@ -221,39 +226,38 @@ public class Login extends javax.swing.JFrame {
             .addGroup(JDIngresarUsuarioLayout.createSequentialGroup()
                 .addGroup(JDIngresarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(JDIngresarUsuarioLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(JDIngresarUsuarioLayout.createSequentialGroup()
                         .addGap(84, 84, 84)
                         .addGroup(JDIngresarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(67, 67, 67)
                         .addGroup(JDIngresarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField3)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)))
+                            .addComponent(jt_usuario)
+                            .addComponent(jt_contra, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)))
                     .addGroup(JDIngresarUsuarioLayout.createSequentialGroup()
-                        .addGap(133, 133, 133)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JDIngresarUsuarioLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(36, 36, 36)))
-                .addContainerGap(62, Short.MAX_VALUE))
+                        .addGap(153, 153, 153)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(146, Short.MAX_VALUE))
         );
         JDIngresarUsuarioLayout.setVerticalGroup(
             JDIngresarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(JDIngresarUsuarioLayout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(44, 44, 44)
                 .addGroup(JDIngresarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel15)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(22, 22, 22)
+                    .addComponent(jt_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel15))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
                 .addGroup(JDIngresarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel16)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(44, 44, 44)
+                    .addComponent(jt_contra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(52, 52, 52)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(78, Short.MAX_VALUE))
+                .addGap(107, 107, 107))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -350,39 +354,21 @@ public class Login extends javax.swing.JFrame {
 		contra = jf_contra.getText();
 		pais = (String) (jc_paisoRegion.getSelectedItem());
 		fechaNaci = jd_fechaDeNacimiento.getDate();
-
+		
+		try {
+			AdminstrarPersona ap = new AdminstrarPersona("./Usuarios.txt");
+			ap.cargarArchivo();
+			ap.getListaPerson().add(new Usuario(nombreCompleto, nickname, contra, pais, fechaNaci));
+			ap.EscribirArchivo();
+			
+		} catch (Exception e) {
+		
+		}
+		JOptionPane.showMessageDialog(jDUsuarios, "Se creo con exito su Usuario");
 		jf_nombreCompleto.setText(" ");
 		jf_nickname.setText(" ");
 		jf_contra.setText(" ");
 		jc_paisoRegion.setSelectedIndex(0);
-		jd_fechaDeNacimiento.setDate(null);
-
-		try {
-			
-			f = new File("./UsuariosCreados.txt");
-			fw = new FileWriter(f, true);
-			bw = new BufferedWriter(fw);
-			bw.write(nombreCompleto);
-			bw.write(System.getProperty("line.separator"));
-			bw.write(nickname);
-			bw.write(System.getProperty("line.separator"));
-			bw.write(contra);
-			bw.write(System.getProperty("line.separator"));
-			bw.write(pais);
-			bw.write(System.getProperty("line.separator"));
-			bw.newLine();
-			bw.flush();
-			
-			//cierre del archivo
-			bw.close();
-			fw.close();
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		Usuario us = new Usuario(nombreCompleto, nickname, contra, pais, fechaNaci);
-		user.add(us);
-		JOptionPane.showMessageDialog(jDUsuarios, "Se creo el usuario exitosamente");
 
     }//GEN-LAST:event_jB_crearMouseClicked
 
@@ -400,6 +386,11 @@ public class Login extends javax.swing.JFrame {
 		JDIngresarUsuario.setVisible(true);
     }//GEN-LAST:event_jLabel3MouseClicked
 
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+        // TODO add your handling code here:
+		File f = new File("./Usuarios");
+    }//GEN-LAST:event_jButton2MouseClicked
+
 	/**
 	 * @param args the command line arguments
 	 */
@@ -411,7 +402,7 @@ public class Login extends javax.swing.JFrame {
 		 */
 		try {
 			for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-				if ("Nimbus".equals(info.getName())) {
+				if ("Windows".equals(info.getName())) {
 					javax.swing.UIManager.setLookAndFeel(info.getClassName());
 					break;
 				}
@@ -463,13 +454,13 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
     private javax.swing.JComboBox jc_paisoRegion;
     private com.toedter.calendar.JDateChooser jd_fechaDeNacimiento;
     private javax.swing.JTextField jf_contra;
     private javax.swing.JTextField jf_nickname;
     private javax.swing.JTextField jf_nombreCompleto;
+    private javax.swing.JTextField jt_contra;
+    private javax.swing.JTextField jt_usuario;
     // End of variables declaration//GEN-END:variables
 ArrayList<Usuario> user = new ArrayList();
 }
