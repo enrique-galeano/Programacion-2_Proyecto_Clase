@@ -68,7 +68,7 @@ public class AdminstrarPersona {
 	}
 	
 	public void cargarArchivo(){
-		Date d1 = null;
+		Date d1 = new Date();
 		for (Usuario l : listaPerson) {
 			d1 = l.getFechaDeNacimiento();
 		}

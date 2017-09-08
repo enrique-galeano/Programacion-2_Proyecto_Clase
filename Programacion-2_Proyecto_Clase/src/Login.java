@@ -1,13 +1,16 @@
 
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileFilter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -19,6 +22,7 @@ import javax.swing.JOptionPane;
  * @author enriquejosegaleanotalavera
  */
 public class Login extends javax.swing.JFrame {
+	ReproductorMP3 rp = new ReproductorMP3();
 
 	/**
 	 * Creates new form Login
@@ -47,6 +51,7 @@ public class Login extends javax.swing.JFrame {
         jB_crear = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jc_paisoRegion = new javax.swing.JComboBox();
+        jButton6 = new javax.swing.JButton();
         jDAdministardor = new javax.swing.JDialog();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
@@ -63,6 +68,13 @@ public class Login extends javax.swing.JFrame {
         jt_contra = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
         jLabel17 = new javax.swing.JLabel();
+        JDmp3 = new javax.swing.JDialog();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        jButton7 = new javax.swing.JButton();
+        jButton8 = new javax.swing.JButton();
+        jt_nombreCancion = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -90,14 +102,17 @@ public class Login extends javax.swing.JFrame {
 
         jc_paisoRegion.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Honduras", "Estados Unidos", "Canada", "Alemania", "Rusia", "Venezuela", "Mexico", " " }));
 
+        jButton6.setText("Prueba Boton de MP3");
+        jButton6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton6MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jDUsuariosLayout = new javax.swing.GroupLayout(jDUsuarios.getContentPane());
         jDUsuarios.getContentPane().setLayout(jDUsuariosLayout);
         jDUsuariosLayout.setHorizontalGroup(
             jDUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDUsuariosLayout.createSequentialGroup()
-                .addGap(94, 94, 94)
-                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jDUsuariosLayout.createSequentialGroup()
                 .addGap(27, 27, 27)
                 .addGroup(jDUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -113,9 +128,7 @@ public class Login extends javax.swing.JFrame {
                         .addGap(3, 3, 3)
                         .addComponent(jLabel11)
                         .addGap(18, 18, 18)
-                        .addGroup(jDUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jB_crear, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jd_fechaDeNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jd_fechaDeNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jDUsuariosLayout.createSequentialGroup()
                         .addGroup(jDUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -126,6 +139,19 @@ public class Login extends javax.swing.JFrame {
                             .addComponent(jf_contra)
                             .addComponent(jc_paisoRegion, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addGap(197, 197, 197))
+            .addGroup(jDUsuariosLayout.createSequentialGroup()
+                .addGroup(jDUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jDUsuariosLayout.createSequentialGroup()
+                        .addGap(94, 94, 94)
+                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jDUsuariosLayout.createSequentialGroup()
+                        .addGap(73, 73, 73)
+                        .addComponent(jB_crear, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDUsuariosLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(79, 79, 79))
         );
         jDUsuariosLayout.setVerticalGroup(
             jDUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -152,9 +178,11 @@ public class Login extends javax.swing.JFrame {
                 .addGroup(jDUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jd_fechaDeNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel11))
-                .addGap(29, 29, 29)
+                .addGap(18, 18, 18)
                 .addComponent(jB_crear)
-                .addContainerGap(80, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(45, Short.MAX_VALUE))
         );
 
         jLabel12.setText("Bienvenido adminstrador");
@@ -260,6 +288,84 @@ public class Login extends javax.swing.JFrame {
                 .addGap(107, 107, 107))
         );
 
+        jButton3.setText("Start");
+        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jButton3MouseReleased(evt);
+            }
+        });
+
+        jButton4.setText("Stop");
+        jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jButton4MouseReleased(evt);
+            }
+        });
+
+        jButton5.setText("Pause");
+        jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jButton5MouseReleased(evt);
+            }
+        });
+
+        jButton7.setText("Resume");
+        jButton7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jButton7MouseReleased(evt);
+            }
+        });
+
+        jButton8.setText("Seleccione Cancion");
+        jButton8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jButton8MouseReleased(evt);
+            }
+        });
+
+        jt_nombreCancion.setEditable(false);
+
+        javax.swing.GroupLayout JDmp3Layout = new javax.swing.GroupLayout(JDmp3.getContentPane());
+        JDmp3.getContentPane().setLayout(JDmp3Layout);
+        JDmp3Layout.setHorizontalGroup(
+            JDmp3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(JDmp3Layout.createSequentialGroup()
+                .addGroup(JDmp3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(JDmp3Layout.createSequentialGroup()
+                        .addGap(70, 70, 70)
+                        .addComponent(jButton3)
+                        .addGap(18, 18, 18)
+                        .addGroup(JDmp3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(JDmp3Layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(jButton8))
+                            .addGroup(JDmp3Layout.createSequentialGroup()
+                                .addComponent(jButton5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton7))))
+                    .addGroup(JDmp3Layout.createSequentialGroup()
+                        .addGap(116, 116, 116)
+                        .addComponent(jt_nombreCancion, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(96, Short.MAX_VALUE))
+        );
+        JDmp3Layout.setVerticalGroup(
+            JDmp3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JDmp3Layout.createSequentialGroup()
+                .addContainerGap(93, Short.MAX_VALUE)
+                .addComponent(jt_nombreCancion, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(64, 64, 64)
+                .addGroup(JDmp3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton5)
+                    .addComponent(jButton3)
+                    .addComponent(jButton4)
+                    .addComponent(jButton7))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton8)
+                .addGap(19, 19, 19))
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel2.setFont(new java.awt.Font("Silom", 0, 18)); // NOI18N
@@ -301,14 +407,14 @@ public class Login extends javax.swing.JFrame {
                             .addComponent(jLabel2)))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel5)))
-                .addContainerGap(89, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(175, 175, 175))
+                        .addComponent(jLabel5))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(176, 176, 176)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(168, 168, 168)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(111, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -319,9 +425,9 @@ public class Login extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(74, 74, 74)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(16, 16, 16))
         );
@@ -360,9 +466,8 @@ public class Login extends javax.swing.JFrame {
 			ap.cargarArchivo();
 			ap.getListaPerson().add(new Usuario(nombreCompleto, nickname, contra, pais, fechaNaci));
 			ap.EscribirArchivo();
-			
 		} catch (Exception e) {
-		
+			JOptionPane.showMessageDialog(jDUsuarios, "Ocurrio un Error, Guardando el Usuario");
 		}
 		JOptionPane.showMessageDialog(jDUsuarios, "Se creo con exito su Usuario");
 		jf_nombreCompleto.setText(" ");
@@ -382,14 +487,58 @@ public class Login extends javax.swing.JFrame {
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
         JDIngresarUsuario.setModal(true);
 		JDIngresarUsuario.pack();
-		JDIngresarUsuario.setResizable(true);
+		JDIngresarUsuario.setResizable(true); 
 		JDIngresarUsuario.setVisible(true);
     }//GEN-LAST:event_jLabel3MouseClicked
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
         // TODO add your handling code here:
-		File f = new File("./Usuarios");
+		
     }//GEN-LAST:event_jButton2MouseClicked
+
+    private void jButton6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseClicked
+        // TODO add your handling code here:
+		JDmp3.setModal(true);
+		JDmp3.pack();
+		JDmp3.setLocationRelativeTo(this);
+		JDmp3.setVisible(true);
+    }//GEN-LAST:event_jButton6MouseClicked
+
+    private void jButton4MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseReleased
+        // TODO add your handling code here:
+		rp.Stop();
+    }//GEN-LAST:event_jButton4MouseReleased
+
+    private void jButton3MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseReleased
+        // TODO add your handling code here:
+		//rp.Play("/Users/enriquejosegaleanotalavera/Musica/TwoFeetGoFckYourself.mp3");
+		//rp.Resume();
+		
+    }//GEN-LAST:event_jButton3MouseReleased
+
+    private void jButton5MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseReleased
+        // TODO add your handling code here:
+		rp.Pause();
+    }//GEN-LAST:event_jButton5MouseReleased
+
+    private void jButton7MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton7MouseReleased
+        // TODO add your handling code here:
+		rp.Resume();
+    }//GEN-LAST:event_jButton7MouseReleased
+
+    private void jButton8MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton8MouseReleased
+        // TODO add your handling code here:
+		FileNameExtensionFilter filtro = new FileNameExtensionFilter("MP3 Files", "mp3");
+		JFileChooser chooser = new JFileChooser("/Users/enriquejosegaleanotalavera");
+		int returnVal = chooser.showOpenDialog(JDmp3);
+		if (returnVal == JFileChooser.APPROVE_OPTION) {
+			File myfile = chooser.getSelectedFile();
+			String cancion = myfile + "";
+			String nombre = chooser.getSelectedFile().getName();
+			jt_nombreCancion.setText(nombre);
+			rp.Play(cancion);
+		}
+    }//GEN-LAST:event_jButton8MouseReleased
 
 	/**
 	 * @param args the command line arguments
@@ -428,9 +577,16 @@ public class Login extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDialog JDIngresarUsuario;
+    private javax.swing.JDialog JDmp3;
     private javax.swing.JButton jB_crear;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
     private com.toedter.calendar.JCalendar jCalendar1;
     private javax.swing.JDialog jDAdministardor;
     private javax.swing.JDialog jDUsuarios;
@@ -460,6 +616,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JTextField jf_nickname;
     private javax.swing.JTextField jf_nombreCompleto;
     private javax.swing.JTextField jt_contra;
+    private javax.swing.JTextField jt_nombreCancion;
     private javax.swing.JTextField jt_usuario;
     // End of variables declaration//GEN-END:variables
 ArrayList<Usuario> user = new ArrayList();
