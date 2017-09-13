@@ -20,6 +20,7 @@ import java.util.ArrayList;
 public class AdminstrarPersona implements Serializable{
 
 	public final long SerializableUID = 555L;
+	
 	private ArrayList<Usuario> persona = null;
 	private File pathLocation = null;
 
@@ -43,7 +44,7 @@ public class AdminstrarPersona implements Serializable{
 		this.pathLocation = pathLocation;
 	}
 
-	public void cargarArchivo() {
+	public ArrayList<Usuario> cargarArchivo() {
 		try {
 			persona = new ArrayList();
 			Usuario temp;
@@ -61,6 +62,7 @@ public class AdminstrarPersona implements Serializable{
 			}//End if
 		} catch (Exception e) {
 		}
+		return persona;
 	}
 
 	public void escribirArchivo() {
