@@ -1,5 +1,7 @@
 
+import java.io.Serializable;
 import java.util.Date;
+import javax.swing.Icon;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -10,23 +12,33 @@ import java.util.Date;
  *
  * @author enriquejosegaleanotalavera
  */
-public class Usuario {
-
+public class Usuario implements Serializable{
+	public final long SerializableUID = 333L;
 	private String nombreCompleto;
 	private String nickname;
 	private String password;
 	private String pais;
 	private Date fechaDeNacimiento;
+	private Icon fotografia;
 
 	public Usuario() {
 	}
 
-	public Usuario(String nombreCompleto, String nickname, String password, String pais, Date fechaDeNacimiento) {
+	public Usuario(String nombreCompleto, String nickname, String password, String pais, Date fechaDeNacimiento, Icon fotografia) {
 		this.nombreCompleto = nombreCompleto;
 		this.nickname = nickname;
 		this.password = password;
 		this.pais = pais;
 		this.fechaDeNacimiento = fechaDeNacimiento;
+		this.fotografia= fotografia;
+	}
+
+	public Icon getFotografia() {
+		return fotografia;
+	}
+
+	public void setFotografia(Icon fotografia) {
+		this.fotografia = fotografia;
 	}
 
 	public String getNombreCompleto() {

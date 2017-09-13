@@ -1,11 +1,12 @@
 
-import java.io.BufferedWriter;
+import java.io.EOFException;
 import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.Scanner;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -16,72 +17,68 @@ import java.util.Scanner;
  *
  * @author enriquejosegaleanotalavera
  */
-public class AdminstrarPersona {
+public class AdminstrarPersona implements Serializable{
 
-	private ArrayList<Usuario> listaPerson = new ArrayList();
-	private File f = null;
+	public final long SerializableUID = 555L;
+	private ArrayList<Usuario> persona = null;
+	private File pathLocation = null;
 
 	public AdminstrarPersona(String path){
-		f = new File(path);
-	}	
-	public ArrayList<Usuario> getListaPerson() {
-		return listaPerson;
+		pathLocation = new File(path);
 	}
 
-	public void setListaPerson(ArrayList<Usuario> listaPerson) {
-		this.listaPerson = listaPerson;
+	public ArrayList<Usuario> getP() {
+		return persona;
 	}
 
-	public File getF() {
-		return f;
+	public void setP(ArrayList<Usuario> p) {
+		this.persona = persona;
 	}
 
-	public void setF(File f) {
-		this.f = f;
+	public File getPathLocation() {
+		return pathLocation;
 	}
 
-	@Override
-	public String toString() {
-		return "AdminstrarPersona{" + "listaPerson=" + listaPerson + '}';
+	public void setPathLocation(File pathLocation) {
+		this.pathLocation = pathLocation;
 	}
 
-	public void EscribirArchivo() throws IOException {
-		FileWriter fw =null;
-		BufferedWriter bw = null;
-		
+	public void cargarArchivo() {
 		try {
-			fw = new FileWriter(f, false);
-			bw = new BufferedWriter(fw);
-			
-			for (Usuario us : listaPerson) {
-				bw.write(us.getNombreCompleto() + ";");
-				bw.write(us.getNickname() + ";");
-				bw.write(us.getPassword() + ";");
-				bw.write(us.getPais() + ";");
-				bw.write(us.getFechaDeNacimiento() + ";");
-			}
-			bw.flush();
-			bw.close();
-			fw.close();
+			persona = new ArrayList();
+			Usuario temp;
+			if (pathLocation.exists()) {
+				FileInputStream entrada = new FileInputStream(pathLocation);
+				ObjectInputStream objeto = new ObjectInputStream(entrada);
+				try {
+					while ((temp = (Usuario) objeto.readObject()) != null) {
+						persona.add(temp);
+					}
+				} catch (EOFException e) {
+				}
+				objeto.close();
+				entrada.close();
+			}//End if
 		} catch (Exception e) {
 		}
 	}
-	
-	public void cargarArchivo(){
-		Date d1 = new Date();
-		for (Usuario l : listaPerson) {
-			d1 = l.getFechaDeNacimiento();
-		}
-		if (f.exists()) {
-			Scanner sc = null;
-			listaPerson = new ArrayList();
-			
+
+	public void escribirArchivo() {
+		FileOutputStream fw = null;
+		ObjectOutputStream bw = null;
+		try {
+			fw = new FileOutputStream(pathLocation);
+			bw = new ObjectOutputStream(fw);
+			for (Usuario t : persona) {
+				bw.writeObject(t);
+			}
+			bw.flush();
+		} catch (Exception e) {
+
+		} finally {
 			try {
-				sc = new Scanner(f);
-				sc.useDelimiter(";");
-				while (sc.hasNext()) {					
-					listaPerson.add(new Usuario(sc.next(), sc.next(), sc.next(), sc.next(), d1));
-				}
+				bw.close();
+				fw.close();
 			} catch (Exception e) {
 			}
 		}
