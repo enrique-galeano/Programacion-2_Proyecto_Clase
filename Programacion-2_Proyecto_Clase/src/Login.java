@@ -65,8 +65,15 @@ public class Login extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         jTextField5 = new javax.swing.JTextField();
         experienca_Usuario = new javax.swing.JDialog();
-        jTabbedPane2 = new javax.swing.JTabbedPane();
+        tab_principal = new javax.swing.JTabbedPane();
         jPanel6 = new javax.swing.JPanel();
+        lb_foto_perfil = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jt_nombre_perfil = new javax.swing.JTextField();
+        jt_nickname_perfil = new javax.swing.JTextField();
+        jt_fechaDenacimiento = new javax.swing.JTextField();
         jPanel7 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         tabla_solicitud = new javax.swing.JTable();
@@ -311,18 +318,69 @@ public class Login extends javax.swing.JFrame {
 
         jTextField5.setText("jTextField5");
 
+        tab_principal.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                tab_principalStateChanged(evt);
+            }
+        });
+
+        lb_foto_perfil.setText("hola aqui va la foto");
+
+        jLabel5.setText("Nombre");
+
+        jLabel6.setText("Nick Name");
+
+        jLabel7.setText("Fecha de Nacimiento");
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 918, Short.MAX_VALUE)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addComponent(jLabel7)
+                        .addGap(39, 39, 39)
+                        .addComponent(jt_fechaDenacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addComponent(lb_foto_perfil, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(100, 100, 100)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel6))
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel6Layout.createSequentialGroup()
+                                .addGap(101, 101, 101)
+                                .addComponent(jt_nickname_perfil, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                                .addGap(96, 96, 96)
+                                .addComponent(jt_nombre_perfil, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(338, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 571, Short.MAX_VALUE)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(48, 48, 48)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lb_foto_perfil, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGap(153, 153, 153)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(jt_nombre_perfil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(34, 34, 34)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6)
+                            .addComponent(jt_nickname_perfil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(34, 34, 34)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(jt_fechaDenacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(4, 4, 4))
         );
 
-        jTabbedPane2.addTab("Muro", jPanel6);
+        tab_principal.addTab("Perfil", jPanel6);
 
         tabla_solicitud.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -418,7 +476,7 @@ public class Login extends javax.swing.JFrame {
                         .addComponent(jButton12)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton17)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 225, Short.MAX_VALUE)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel7Layout.createSequentialGroup()
@@ -448,10 +506,10 @@ public class Login extends javax.swing.JFrame {
                             .addComponent(jButton18)
                             .addComponent(jButton19)
                             .addComponent(jButton20))))
-                .addContainerGap(88, Short.MAX_VALUE))
+                .addContainerGap(103, Short.MAX_VALUE))
         );
 
-        jTabbedPane2.addTab("Agregar amigos ", jPanel7);
+        tab_principal.addTab("Agregar amigos ", jPanel7);
 
         jt_mensaje_para_amigo.setColumns(20);
         jt_mensaje_para_amigo.setRows(5);
@@ -475,7 +533,7 @@ public class Login extends javax.swing.JFrame {
                     .addGroup(jPanel8Layout.createSequentialGroup()
                         .addGap(281, 281, 281)
                         .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(336, Short.MAX_VALUE))
+                .addContainerGap(506, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jButton2)
@@ -492,23 +550,23 @@ public class Login extends javax.swing.JFrame {
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(60, 60, 60)
                 .addComponent(jButton2)
-                .addContainerGap(209, Short.MAX_VALUE))
+                .addContainerGap(224, Short.MAX_VALUE))
         );
 
-        jTabbedPane2.addTab("Mensajeria", jPanel8);
+        tab_principal.addTab("Mensajeria", jPanel8);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 918, Short.MAX_VALUE)
+            .addGap(0, 1088, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 571, Short.MAX_VALUE)
+            .addGap(0, 586, Short.MAX_VALUE)
         );
 
-        jTabbedPane2.addTab("Tareas", jPanel2);
+        tab_principal.addTab("Tareas", jPanel2);
 
         jt_nombreCancion1.setEditable(false);
 
@@ -568,7 +626,7 @@ public class Login extends javax.swing.JFrame {
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGap(206, 206, 206)
                         .addComponent(jt_nombreCancion1, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(369, Short.MAX_VALUE))
+                .addContainerGap(539, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -583,10 +641,10 @@ public class Login extends javax.swing.JFrame {
                     .addComponent(jButton14))
                 .addGap(38, 38, 38)
                 .addComponent(jButton16)
-                .addContainerGap(224, Short.MAX_VALUE))
+                .addContainerGap(239, Short.MAX_VALUE))
         );
 
-        jTabbedPane2.addTab("Reproductor MP3", jPanel5);
+        tab_principal.addTab("Reproductor MP3", jPanel5);
 
         javax.swing.GroupLayout experienca_UsuarioLayout = new javax.swing.GroupLayout(experienca_Usuario.getContentPane());
         experienca_Usuario.getContentPane().setLayout(experienca_UsuarioLayout);
@@ -594,13 +652,13 @@ public class Login extends javax.swing.JFrame {
             experienca_UsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(experienca_UsuarioLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 939, Short.MAX_VALUE))
+                .addComponent(tab_principal))
         );
         experienca_UsuarioLayout.setVerticalGroup(
             experienca_UsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(experienca_UsuarioLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane2))
+                .addComponent(tab_principal))
         );
 
         javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
@@ -878,8 +936,9 @@ public class Login extends javax.swing.JFrame {
 				if (user1.getNickname().equals(global.getNickname())) {
 					System.out.println("Entro al if " + user1.getNickname());
 					user1.getSoli().add(soli);
-
+					
 					JOptionPane.showMessageDialog(experienca_Usuario, "Se envio exitosamente la invitacion");
+					
 				}
 			}
 		} catch (Exception e) {
@@ -1055,6 +1114,12 @@ public class Login extends javax.swing.JFrame {
 		}
     }//GEN-LAST:event_jButton20MouseClicked
 
+    private void tab_principalStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_tab_principalStateChanged
+		if (tab_principal.getSelectedIndex() == 0) {
+			
+		}
+    }//GEN-LAST:event_tab_principalStateChanged
+
 	/**
 	 * @param args the command line arguments
 	 */
@@ -1066,7 +1131,7 @@ public class Login extends javax.swing.JFrame {
 		 */
 		try {
 			for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-				if ("Windows".equals(info.getName())) {
+				if ("Windows Classic".equals(info.getName())) {
 					javax.swing.UIManager.setLookAndFeel(info.getClassName());
 					break;
 				}
@@ -1131,6 +1196,9 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -1145,7 +1213,6 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane7;
-    private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField3;
@@ -1157,11 +1224,16 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JTextField jf_nickname;
     private javax.swing.JTextField jf_nombreCompleto;
     private javax.swing.JPasswordField jp_usuario_o_admin;
+    private javax.swing.JTextField jt_fechaDenacimiento;
     private javax.swing.JTextArea jt_mensaje_para_amigo;
+    private javax.swing.JTextField jt_nickname_perfil;
     private javax.swing.JTextField jt_nombreCancion;
     private javax.swing.JTextField jt_nombreCancion1;
+    private javax.swing.JTextField jt_nombre_perfil;
     private javax.swing.JTextField jt_usuario_o_admin;
     private javax.swing.JLabel lb_foto;
+    private javax.swing.JLabel lb_foto_perfil;
+    private javax.swing.JTabbedPane tab_principal;
     private javax.swing.JTable tabla_acepta_rechazar;
     private javax.swing.JTable tabla_solicitud;
     private javax.swing.JPanel tupapa;
