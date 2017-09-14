@@ -1,23 +1,12 @@
 
-import java.awt.Container;
 import java.awt.Image;
-import java.awt.Panel;
 import java.awt.Toolkit;
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileFilter;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 
@@ -40,7 +29,9 @@ public class Login extends javax.swing.JFrame {
 	public Login() {
 		initComponents();
 		user = new AdminstrarPersona("./usuarios.cbm").cargarArchivo();
+
 		System.out.println(user);
+
 	}
 
 	/**
@@ -81,6 +72,11 @@ public class Login extends javax.swing.JFrame {
         tabla_solicitud = new javax.swing.JTable();
         jButton12 = new javax.swing.JButton();
         jButton17 = new javax.swing.JButton();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        tabla_acepta_rechazar = new javax.swing.JTable();
+        jButton18 = new javax.swing.JButton();
+        jButton19 = new javax.swing.JButton();
+        jButton20 = new javax.swing.JButton();
         jPanel8 = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
         jt_mensaje_para_amigo = new javax.swing.JTextArea();
@@ -96,6 +92,8 @@ public class Login extends javax.swing.JFrame {
         jButton15 = new javax.swing.JButton();
         jButton16 = new javax.swing.JButton();
         jDialog1 = new javax.swing.JDialog();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jt_usuario_o_admin = new javax.swing.JTextField();
@@ -317,7 +315,7 @@ public class Login extends javax.swing.JFrame {
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 798, Short.MAX_VALUE)
+            .addGap(0, 918, Short.MAX_VALUE)
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -336,7 +334,20 @@ public class Login extends javax.swing.JFrame {
             new String [] {
                 "Nombre", "Nick Name"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tabla_solicitud.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabla_solicitudMouseClicked(evt);
+            }
+        });
         jScrollPane3.setViewportView(tabla_solicitud);
 
         jButton12.setText("Enviar");
@@ -353,31 +364,91 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
+        tabla_acepta_rechazar.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "Nombre", "Nick Name"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tabla_acepta_rechazar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabla_acepta_rechazarMouseClicked(evt);
+            }
+        });
+        jScrollPane7.setViewportView(tabla_acepta_rechazar);
+
+        jButton18.setText("Aceptar");
+        jButton18.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton18MouseClicked(evt);
+            }
+        });
+
+        jButton19.setText("Rechazar");
+
+        jButton20.setText("Cargar solicitudes");
+        jButton20.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton20MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton12)
-                .addGap(86, 86, 86)
-                .addComponent(jButton17)
-                .addGap(250, 250, 250))
             .addGroup(jPanel7Layout.createSequentialGroup()
-                .addGap(204, 204, 204)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 377, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(217, Short.MAX_VALUE))
+                .addGap(137, 137, 137)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addComponent(jButton12)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton17)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addComponent(jButton18)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton19)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton20)))
+                .addGap(49, 49, 49))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
-                .addGap(64, 64, 64)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton12)
-                    .addComponent(jButton17))
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addGap(16, 16, 16)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton12)
+                            .addComponent(jButton17)))
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGap(5, 5, 5)
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton18)
+                            .addComponent(jButton19)
+                            .addComponent(jButton20))))
+                .addContainerGap(88, Short.MAX_VALUE))
         );
 
         jTabbedPane2.addTab("Agregar amigos ", jPanel7);
@@ -404,7 +475,7 @@ public class Login extends javax.swing.JFrame {
                     .addGroup(jPanel8Layout.createSequentialGroup()
                         .addGap(281, 281, 281)
                         .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(216, Short.MAX_VALUE))
+                .addContainerGap(336, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jButton2)
@@ -430,7 +501,7 @@ public class Login extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 798, Short.MAX_VALUE)
+            .addGap(0, 918, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -497,7 +568,7 @@ public class Login extends javax.swing.JFrame {
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGap(206, 206, 206)
                         .addComponent(jt_nombreCancion1, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(249, Short.MAX_VALUE))
+                .addContainerGap(369, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -523,7 +594,7 @@ public class Login extends javax.swing.JFrame {
             experienca_UsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(experienca_UsuarioLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane2))
+                .addComponent(jTabbedPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 939, Short.MAX_VALUE))
         );
         experienca_UsuarioLayout.setVerticalGroup(
             experienca_UsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -542,6 +613,19 @@ public class Login extends javax.swing.JFrame {
             jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 629, Short.MAX_VALUE)
         );
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane4.setViewportView(jTable1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -763,13 +847,14 @@ public class Login extends javax.swing.JFrame {
 		ArrayList<Usuario> temp = ad.getP();
 		for (Usuario temp1 : temp) {
 			if (temp1.getNickname().equals(jt_usuario_o_admin.getText()) && (temp1.getPassword().equals(jp_usuario_o_admin.getText()))) {
+				JOptionPane.showMessageDialog(this, "Ingreso con exito");
+				global = temp1;
+				System.out.println(global + "Entar aqui");
 				experienca_Usuario.setModal(true);
 				experienca_Usuario.pack();
 				experienca_Usuario.setLocationRelativeTo(this);
 				experienca_Usuario.setVisible(true);
-				System.out.println("Usted es usuario prro");
-			}else{
-				System.out.println("usted no esta validado");
+
 			}
 
 		}
@@ -783,14 +868,24 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton10MouseClicked
 
     private void jButton12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton12MouseClicked
-		AdminstrarPersona a = new AdminstrarPersona("./usuarios.cbm");
-		a.cargarArchivo();
-		ArrayList<Usuario> tempo = a.getP();
-		for (Usuario tempo1 : tempo) {
 		
+		try {
+			System.out.println("Entro al try cathc ");
+			Solicitud soli = new Solicitud(global, global1);
+			System.out.println(soli);
+			for (Usuario user1 : user) {
+				System.out.println("Entro al for " + user1.getNickname());
+				if (user1.getNickname().equals(global.getNickname())) {
+					System.out.println("Entro al if " + user1.getNickname());
+					user1.getSoli().add(soli);
+
+					JOptionPane.showMessageDialog(experienca_Usuario, "Se envio exitosamente la invitacion");
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		
-		
+
     }//GEN-LAST:event_jButton12MouseClicked
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
@@ -876,13 +971,89 @@ public class Login extends javax.swing.JFrame {
 
     private void jButton17MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton17MouseClicked
 		// TODO add your handling code here:
+		int control;
+		String usuario;
 		DefaultTableModel modelo = (DefaultTableModel) tabla_solicitud.getModel();
+		control = tabla_solicitud.getRowCount();
+		for (int i = 0; i < control; i++) {
+			modelo.removeRow(0);
+		}
 		for (Usuario user1 : user) {
-			Object[] newRow = {user1.getNombreCompleto(), user1.getNickname()};
-			modelo.addRow(newRow);
+			if (!user1.getNickname().equals(global.getNickname())) {
+				Object[] newRow = {user1.getNombreCompleto(), user1.getNickname()};
+				modelo.addRow(newRow);
+			}
 		}
 		tabla_solicitud.setModel(modelo);
     }//GEN-LAST:event_jButton17MouseClicked
+
+    private void tabla_solicitudMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabla_solicitudMouseClicked
+		// TODO add your handling code here:
+
+		DefaultTableModel modelo = (DefaultTableModel) tabla_solicitud.getModel();
+		int uno;
+		String uno1;
+		String dos;
+		uno = tabla_solicitud.getSelectedRow();
+		uno1 = (String) tabla_solicitud.getValueAt(uno, 0);
+		dos = (String) tabla_solicitud.getValueAt(uno, 1);
+		for (Usuario user1 : user) {
+			if ((user1.getNombreCompleto().equals(uno1)) && (user1.getNickname().equals(dos))) {
+				global1 = user1;
+				System.out.println(global1 + " global 1 entra aqui");
+			}
+		}
+
+    }//GEN-LAST:event_tabla_solicitudMouseClicked
+
+    private void tabla_acepta_rechazarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabla_acepta_rechazarMouseClicked
+		// TODO add your handling code here:
+		DefaultTableModel modelo = (DefaultTableModel) tabla_acepta_rechazar.getModel();
+		int uno;
+		String uno1;
+		String dos;
+		uno = tabla_acepta_rechazar.getSelectedRow();
+		uno1 = (String) tabla_acepta_rechazar.getValueAt(uno, 0);
+		dos = (String) tabla_acepta_rechazar.getValueAt(uno, 1);
+		for (Usuario user1 : user) {
+			if ((user1.getNombreCompleto().equals(uno1)) && (user1.getNickname().equals(dos))) {
+				global1 = user1;
+			}
+		}
+    }//GEN-LAST:event_tabla_acepta_rechazarMouseClicked
+
+    private void jButton18MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton18MouseClicked
+		// TODO add your handling code here:
+		try {
+			Solicitud soli = new Solicitud(global, global1);
+			for (Usuario user1 : user) {
+				if (user1 == global || user1 == global1) {
+					user1.getUs().add(global1);
+					JOptionPane.showMessageDialog(experienca_Usuario, "Agrego al usuario");
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+    }//GEN-LAST:event_jButton18MouseClicked
+
+    private void jButton20MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton20MouseClicked
+		// TODO add your handling code here:
+		Usuario solic;
+		DefaultTableModel modelo = (DefaultTableModel) tabla_solicitud.getModel();
+		if (global.getSoli().size() > 0) {
+			System.out.println(global + " tiene humanos");
+			for (Solicitud soli : global.getSoli()) {
+				System.out.println(global.getSoli() + " solicitud puta ");
+				solic = soli.getEmisor();
+				Object[] newRow = {solic.getNombreCompleto(), solic.getNickname()};
+				modelo.addRow(newRow);
+
+			}
+			tabla_solicitud.setModel(modelo);
+		}
+    }//GEN-LAST:event_jButton20MouseClicked
 
 	/**
 	 * @param args the command line arguments
@@ -934,7 +1105,10 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JButton jButton15;
     private javax.swing.JButton jButton16;
     private javax.swing.JButton jButton17;
+    private javax.swing.JButton jButton18;
+    private javax.swing.JButton jButton19;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton20;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
@@ -968,8 +1142,11 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JTabbedPane jTabbedPane2;
+    private javax.swing.JTable jTable1;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField5;
@@ -985,9 +1162,13 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JTextField jt_nombreCancion1;
     private javax.swing.JTextField jt_usuario_o_admin;
     private javax.swing.JLabel lb_foto;
+    private javax.swing.JTable tabla_acepta_rechazar;
     private javax.swing.JTable tabla_solicitud;
     private javax.swing.JPanel tupapa;
     // End of variables declaration//GEN-END:variables
 ArrayList<Usuario> user = new ArrayList();
-
+	Usuario global;
+	Usuario global1;
+	Usuario agregarUsuario;
+	Usuario aregarUsuario2;
 }

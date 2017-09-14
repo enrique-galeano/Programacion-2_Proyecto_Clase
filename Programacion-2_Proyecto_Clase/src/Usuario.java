@@ -1,5 +1,6 @@
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.Icon;
 
@@ -20,9 +21,9 @@ public class Usuario implements Serializable{
 	private String pais;
 	private Date fechaDeNacimiento;
 	private Icon fotografia;
+	private ArrayList<Solicitud> soli; 
+	private ArrayList<Usuario> us;
 
-	public Usuario() {
-	}
 
 	public Usuario(String nombreCompleto, String nickname, String password, String pais, Date fechaDeNacimiento, Icon fotografia) {
 		this.nombreCompleto = nombreCompleto;
@@ -33,8 +34,24 @@ public class Usuario implements Serializable{
 		this.fotografia= fotografia;
 	}
 
+	public ArrayList<Usuario> getUs() {
+		return us;
+	}
+
+	public void setUs(ArrayList<Usuario> us) {
+		this.us = us;
+	}
+
 	public Icon getFotografia() {
 		return fotografia;
+	}
+
+	public ArrayList<Solicitud> getSoli() {
+		return soli;
+	}
+
+	public void setSoli(ArrayList<Solicitud> soli) {
+		this.soli = soli;
 	}
 
 	public void setFotografia(Icon fotografia) {
@@ -83,7 +100,7 @@ public class Usuario implements Serializable{
 
 	@Override
 	public String toString() {
-		return nombreCompleto + " ";
+		return nombreCompleto;
 	}
 
 }

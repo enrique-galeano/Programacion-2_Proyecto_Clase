@@ -10,31 +10,34 @@
  */
 public class Solicitud {
 
-	private String emisor;
-	private String receptor;
+	private Usuario emisor;
+	private Usuario receptor;
 
-	public Solicitud() {
-	}
-
-	public Solicitud(String emisor, String receptor) {
+	public Solicitud(Usuario emisor, Usuario receptor) {
 		this.emisor = emisor;
 		this.receptor = receptor;
 	}
 
-	public String getEmisor() {
+	public Usuario getEmisor() {
 		return emisor;
 	}
 
-	public void setEmisor(String emisor) {
+	public void setEmisor(Usuario emisor) {
 		this.emisor = emisor;
 	}
 
-	public String getReceptor() {
+	public Usuario getReceptor() {
 		return receptor;
 	}
 
-	public void setReceptor(String receptor) {
+	public void setReceptor(Usuario receptor) {
 		this.receptor = receptor;
 	}
+
+	@Override
+	public String toString() {
+		return emisor + " ";
+	}
+	
 
 }
