@@ -13,7 +13,8 @@ import javax.swing.Icon;
  *
  * @author enriquejosegaleanotalavera
  */
-public class Usuario implements Serializable{
+public class Usuario implements Serializable {
+
 	public final long SerializableUID = 333L;
 	private String nombreCompleto;
 	private String nickname;
@@ -21,9 +22,8 @@ public class Usuario implements Serializable{
 	private String pais;
 	private Date fechaDeNacimiento;
 	private Icon fotografia;
-	private ArrayList<Solicitud> soli; 
-	private ArrayList<Usuario> us;
-
+	private ArrayList<Solicitud> soli = new ArrayList();
+	private ArrayList<Usuario> us = new ArrayList();
 
 	public Usuario(String nombreCompleto, String nickname, String password, String pais, Date fechaDeNacimiento, Icon fotografia) {
 		this.nombreCompleto = nombreCompleto;
@@ -31,7 +31,7 @@ public class Usuario implements Serializable{
 		this.password = password;
 		this.pais = pais;
 		this.fechaDeNacimiento = fechaDeNacimiento;
-		this.fotografia= fotografia;
+		this.fotografia = fotografia;
 	}
 
 	public ArrayList<Usuario> getUs() {
@@ -102,5 +102,4 @@ public class Usuario implements Serializable{
 	public String toString() {
 		return nombreCompleto;
 	}
-
 }

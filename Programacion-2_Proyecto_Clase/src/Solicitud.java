@@ -1,3 +1,6 @@
+
+import java.io.Serializable;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -8,8 +11,8 @@
  *
  * @author enriquejosegaleanotalavera
  */
-public class Solicitud {
-
+public class Solicitud implements Serializable{
+	public final long SerializableUID = 665L;
 	private Usuario emisor;
 	private Usuario receptor;
 
